@@ -1,0 +1,110 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">
+    <view class="loading-spinner"></view>
+  </view>
+
+  <view wx:elif="{{error}}" class="error-state">
+    <text class="error-text">{{error}}</text>
+  </view>
+
+  <view wx:elif="{{!detail}}" class="empty-state">
+    <text class="text">行程不存在</text>
+  </view>
+
+  <view wx:else class="detail-content">
+    <!-- 基本信息 -->
+    <view class="card">
+      <view class="card-header">
+        <text class="card-icon">📋</text>
+        <text class="card-title">基本信息</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">出发时间</text>
+        <text class="info-value">{{detail.startTime}}</text>
+      </view>
+      <view wx:if="{{detail.endTime}}" class="info-row">
+        <text class="info-label">结束时间</text>
+        <text class="info-value">{{detail.endTime}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">渔场名称</text>
+        <text class="info-value">{{detail.spotName}}</text>
+      </view>
+      <view wx:if="{{detail.positionName}}" class="info-row">
+        <text class="info-label">钓位</text>
+        <text class="info-value">{{detail.positionName}}</text>
+      </view>
+      <view wx:if="{{detail.gearType}}" class="info-row">
+        <text class="info-label">装备类型</text>
+        <text class="info-value">{{detail.gearType}}</text>
+      </view>
+      <view wx:if="{{detail.maxLengthCm}}" class="info-row">
+        <text class="info-label">最大长度</text>
+        <text class="info-value">{{detail.maxLengthCm}} cm</text>
+      </view>
+      <view wx:if="{{detail.totalWeightKg > 0}}" class="info-row">
+        <text class="info-label">总重量</text>
+        <text class="info-value">{{detail.totalWeightKg}} kg</text>
+      </view>
+      <view wx:if="{{detail.bait}}" class="info-row">
+        <text class="info-label">饵料类型</text>
+        <text class="info-value">{{detail.bait}}</text>
+      </view>
+    </view>
+
+    <!-- 渔获物种 -->
+    <view class="card">
+      <view class="card-header">
+        <text class="card-icon">🐟</text>
+        <text class="card-title">渔获物种</text>
+      </view>
+      <view wx:if="{{detail.isNoCatch}}" class="empty-catch">
+        <text class="empty-catch-text">空军 - 没有渔获记录</text>
+      </view>
+      <view wx:else class="species-list">
+        <view class="species-item" wx:for="{{detail.species}}" wx:key="name">
+          <view class="species-avatar">
+            <text>🐟</text>
+          </view>
+          <text class="species-name">{{item.name}}</text>
+          <view class="species-count-tag">
+            <text class="species-count-text">{{item.count}} 尾</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 天气信息 -->
+    <view wx:if="{{detail.weather}}" class="card">
+      <view class="card-header">
+        <text class="card-icon">🌤️</text>
+        <text class="card-title">天气信息</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">气温</text>
+        <text class="info-value">{{detail.weather.airTemp}}°C</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">气压</text>
+        <text class="info-value">{{detail.weather.pressureHpa}} hPa</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">风速</text>
+        <text class="info-value">{{detail.weather.windSpeedMps}} m/s</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">天气状况</text>
+        <text class="info-value">{{detail.weather.weatherCondition}}</text>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view wx:if="{{detail.notes}}" class="card">
+      <view class="card-header">
+        <text class="card-icon">📝</text>
+        <text class="card-title">备注</text>
+      </view>
+      <text class="notes-text">{{detail.notes}}</text>
+    </view>
+  </view>
+</view>

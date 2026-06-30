@@ -1,0 +1,91 @@
+<view class="container">
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="loading">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">正在加载天气数据...</text>
+  </view>
+
+  <!-- 错误 -->
+  <view wx:elif="{{error}}" class="error-state">
+    <text class="error-icon">⚠️</text>
+    <text class="error-text">{{error}}</text>
+    <button class="retry-btn" bindtap="loadData">重试</button>
+  </view>
+
+  <!-- 主内容 -->
+  <view wx:else class="content">
+    <!-- 钓鱼指数卡片 -->
+    <view class="card index-card" wx:if="{{todayIndex}}">
+      <view class="index-header">
+        <text class="index-title">🎣 钓鱼指数</text>
+      </view>
+      <view class="index-body">
+        <view class="index-score-row">
+          <text class="index-score {{todayIndex.scoreColor}}">{{todayIndex.totalScore}}</text>
+          <text class="index-level {{todayIndex.scoreColor}}">{{todayIndex.recommendation}}</text>
+        </view>
+        <view class="index-factors">
+          <view class="factor-chip" wx:for="{{todayIndex.factorScores}}" wx:key="name" wx:if="{{item.score > 0}}">
+            <text class="factor-name">{{item.name}}</text>
+            <text class="factor-score">{{item.score}}</text>
+          </view>
+        </view>
+        <view wx:if="{{todayForecast}}" class="weather-detail">
+          <text class="weather-text">今日: {{todayForecast.weatherCondition}} {{todayForecast.minTemp}}°~{{todayForecast.maxTemp}}°C 风速{{todayForecast.windSpeedMps}}m/s</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 无天气数据 -->
+    <view class="card" wx:if="{{!todayIndex && !loading}}">
+      <view class="empty-weather">
+        <text class="empty-icon">🌤️</text>
+        <text class="empty-text">暂无天气数据</text>
+      </view>
+    </view>
+
+    <!-- 7天预报 -->
+    <view wx:if="{{forecasts.length > 0}}" class="section">
+      <text class="section-title">未来 {{forecasts.length}} 天预报</text>
+      <view class="forecast-list">
+        <view class="card forecast-item" wx:for="{{forecasts}}" wx:key="date">
+          <view class="forecast-main">
+            <text class="forecast-date">{{item.date}}</text>
+            <text class="forecast-weather">{{item.weatherCondition}}</text>
+            <text class="forecast-temp">{{item.minTemp}}°~{{item.maxTemp}}°C</text>
+            <text class="forecast-score {{item.scoreColor}}">{{item.totalScore}}</text>
+          </view>
+          <text class="forecast-rec {{item.scoreColor}}">{{item.recommendation}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 最近行程 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">最近行程</text>
+      </view>
+      <view wx:if="{{recentTrips.length === 0}}" class="card empty-trips">
+        <text class="empty-icon">🎣</text>
+        <text class="empty-text">还没有记录{'\n'}快去记一次钓鱼吧！</text>
+      </view>
+      <view wx:else class="trip-list">
+        <view class="card trip-item" wx:for="{{recentTrips}}" wx:key="id" data-id="{{item.id}}" bindtap="onTapTrip">
+          <view class="trip-left">
+            <view class="trip-avatar {{item.isNoCatch ? 'no-catch' : 'has-catch'}}">
+              <text>{{item.isNoCatch ? '😢' : '🐟'}}</text>
+            </view>
+          </view>
+          <view class="trip-center">
+            <text class="trip-spot">{{item.spotName}}</text>
+            <text class="trip-date">{{item.date}}</text>
+          </view>
+          <view class="trip-right">
+            <view wx:if="{{item.isNoCatch}}" class="tag tag-red">空军</view>
+            <view wx:else class="tag tag-blue">{{item.totalCount}}尾</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

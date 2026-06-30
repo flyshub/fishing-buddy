@@ -1,0 +1,71 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">
+    <view class="loading-spinner"></view>
+  </view>
+
+  <view wx:else class="content">
+    <!-- 中鱼率 -->
+    <view class="card stat-card">
+      <text class="stat-label">中鱼率</text>
+      <text class="stat-value">{{catchRate}}%</text>
+    </view>
+
+    <!-- 出钓频率 -->
+    <view class="card" wx:if="{{frequencyData.length > 0}}">
+      <text class="card-title">出钓频率</text>
+      <view class="chart-placeholder">
+        <view wx:for="{{frequencyData}}" wx:key="month" class="bar-row">
+          <text class="bar-label">{{item.month}}</text>
+          <view class="bar-bg">
+            <view class="bar-fill" style="width: {{item.count * 20}}%"></view>
+          </view>
+          <text class="bar-value">{{item.count}}次</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 鱼种分布 -->
+    <view class="card" wx:if="{{speciesData.length > 0}}">
+      <text class="card-title">鱼种分布</text>
+      <view class="species-list">
+        <view wx:for="{{speciesData}}" wx:key="name" class="species-row">
+          <text class="species-name">{{item.name}}</text>
+          <view class="species-bar-bg">
+            <view class="species-bar-fill" style="width: {{item.count * 100 / speciesData[0].count}}%"></view>
+          </view>
+          <text class="species-count">{{item.count}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 饵料效率 -->
+    <view class="card" wx:if="{{baitData.length > 0}}">
+      <text class="card-title">饵料效率</text>
+      <view class="bait-list">
+        <view wx:for="{{baitData}}" wx:key="bait" class="bait-row">
+          <text class="bait-name">{{item.bait}}</text>
+          <text class="bait-avg">平均 {{item.avgCount}} 尾/次</text>
+          <text class="bait-count">共 {{item.tripCount}} 次</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 渔获趋势 -->
+    <view class="card" wx:if="{{trendData.length > 0}}">
+      <text class="card-title">渔获趋势</text>
+      <view class="trend-list">
+        <view wx:for="{{trendData}}" wx:key="date" class="trend-row">
+          <text class="trend-date">{{item.date}}</text>
+          <text class="trend-count">{{item.totalCount}}尾</text>
+          <text class="trend-weight" wx:if="{{item.totalWeightKg > 0}}">{{item.totalWeightKg}}kg</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{!loading && frequencyData.length === 0}}" class="empty-state">
+      <text class="empty-icon">📊</text>
+      <text class="empty-text">还没有足够的数据{'\n'}记录更多行程后查看分析</text>
+    </view>
+  </view>
+</view>

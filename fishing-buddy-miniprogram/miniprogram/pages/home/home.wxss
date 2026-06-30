@@ -1,0 +1,322 @@
+.container {
+  padding: var(--spacing-md);
+}
+
+/* 加载状态 */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 200rpx 0;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: var(--spacing-md);
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+}
+
+/* 错误状态 */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 60rpx;
+}
+
+.error-icon {
+  font-size: 96rpx;
+  margin-bottom: var(--spacing-lg);
+}
+
+.error-text {
+  color: var(--text-secondary);
+  font-size: var(--font-md);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.retry-btn {
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: var(--font-md);
+}
+
+/* 钓鱼指数卡片 */
+.index-card {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+  color: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.index-header {
+  padding: var(--spacing-lg) var(--spacing-lg) 0;
+}
+
+.index-title {
+  font-size: var(--font-lg);
+  font-weight: bold;
+}
+
+.index-body {
+  padding: var(--spacing-lg);
+}
+
+.index-score-row {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: var(--spacing-md);
+}
+
+.index-score {
+  font-size: 96rpx;
+  font-weight: bold;
+  margin-right: var(--spacing-md);
+}
+
+.index-score.green { color: #4CAF50; }
+.index-score.lightGreen { color: #8BC34A; }
+.index-score.orange { color: #FF9800; }
+.index-score.red { color: #F44336; }
+
+.index-level {
+  font-size: var(--font-lg);
+  font-weight: 500;
+}
+
+.index-level.green { color: #C8E6C9; }
+.index-level.lightGreen { color: #DCEDC8; }
+.index-level.orange { color: #FFE0B2; }
+.index-level.red { color: #FFCDD2; }
+
+.index-factors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.factor-chip {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.factor-name {
+  font-size: var(--font-xs);
+  opacity: 0.9;
+}
+
+.factor-score {
+  font-size: var(--font-xs);
+  font-weight: bold;
+}
+
+.weather-detail {
+  border-top: 1rpx solid rgba(255, 255, 255, 0.3);
+  padding-top: var(--spacing-sm);
+}
+
+.weather-text {
+  font-size: var(--font-sm);
+  opacity: 0.9;
+}
+
+/* 无天气数据 */
+.empty-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xl);
+}
+
+.empty-icon {
+  font-size: 64rpx;
+  margin-bottom: var(--spacing-sm);
+}
+
+.empty-text {
+  color: var(--text-hint);
+  font-size: var(--font-sm);
+}
+
+/* 区块标题 */
+.section {
+  margin-top: var(--spacing-lg);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: bold;
+}
+
+/* 预报列表 */
+.forecast-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.forecast-item {
+  padding: var(--spacing-md);
+}
+
+.forecast-main {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.forecast-date {
+  font-weight: 500;
+  min-width: 100rpx;
+}
+
+.forecast-weather {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+}
+
+.forecast-temp {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  flex: 1;
+}
+
+.forecast-score {
+  font-size: var(--font-xl);
+  font-weight: bold;
+  min-width: 60rpx;
+  text-align: right;
+}
+
+.forecast-score.green { color: var(--success-color); }
+.forecast-score.lightGreen { color: #8BC34A; }
+.forecast-score.orange { color: var(--warning-color); }
+.forecast-score.red { color: var(--danger-color); }
+
+.forecast-rec {
+  font-size: var(--font-xs);
+  margin-top: var(--spacing-xs);
+}
+
+.forecast-rec.green { color: var(--success-color); }
+.forecast-rec.lightGreen { color: #8BC34A; }
+.forecast-rec.orange { color: var(--warning-color); }
+.forecast-rec.red { color: var(--danger-color); }
+
+/* 最近行程 */
+.empty-trips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xl);
+}
+
+.trip-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.trip-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.trip-left {
+  flex-shrink: 0;
+}
+
+.trip-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+}
+
+.trip-avatar.no-catch {
+  background: var(--danger-light);
+}
+
+.trip-avatar.has-catch {
+  background: var(--primary-light);
+}
+
+.trip-center {
+  flex: 1;
+  min-width: 0;
+}
+
+.trip-spot {
+  font-size: var(--font-md);
+  font-weight: 500;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trip-date {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  display: block;
+  margin-top: var(--spacing-xs);
+}
+
+.trip-right {
+  flex-shrink: 0;
+}
+
+.tag {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-xs);
+  font-weight: bold;
+}
+
+.tag-blue {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.tag-red {
+  background: var(--danger-light);
+  color: var(--danger-color);
+}
+
+.empty-text {
+  color: var(--text-hint);
+  font-size: var(--font-md);
+  text-align: center;
+  line-height: 1.6;
+}

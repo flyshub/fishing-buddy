@@ -1,0 +1,27 @@
+{
+    "next_number":  20,
+    "issues":  {
+                   "0001":  "first-trip-end-to-end",
+                   "0002":  "fishing-index-recommendations",
+                   "0003":  "record-no-catch",
+                   "0004":  "analytics-fishing-frequency",
+                   "0005":  "analytics-best-spot-and-time",
+                   "0006":  "analytics-species-and-trends",
+                   "0007":  "trip-filters",
+                   "0008":  "data-management",
+                   "0009":  "repository-layer",
+                   "0010":  "wechat-miniprogram-migration",
+                   "0011":  "project-scaffolding",
+                   "0012":  "weather-proxy-and-fishing-index",
+                   "0013":  "home-page-fishing-index",
+                   "0014":  "record-trip-cloud-db",
+                   "0015":  "history-and-detail",
+                   "0016":  "gps-reverse-geocode-spot-dedup",
+                   "0017":  "analytics-charts",
+                   "0018":  "social-sharing",
+                   "0019":  "unit-switch-settings"
+               },
+    "completed": [
+        "0009"
+    ]
+}

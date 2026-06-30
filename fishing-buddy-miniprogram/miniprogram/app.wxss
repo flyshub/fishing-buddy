@@ -1,0 +1,109 @@
+/* 全局样式变量 */
+page {
+  --primary-color: #2196F3;
+  --primary-light: #E3F2FD;
+  --danger-color: #F44336;
+  --danger-light: #FFEBEE;
+  --success-color: #4CAF50;
+  --warning-color: #FF9800;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --text-hint: #9E9E9E;
+  --bg-color: #F5F5F5;
+  --card-bg: #FFFFFF;
+  --border-color: #E0E0E0;
+  --spacing-xs: 4rpx;
+  --spacing-sm: 8rpx;
+  --spacing-md: 16rpx;
+  --spacing-lg: 24rpx;
+  --spacing-xl: 32rpx;
+  --radius-sm: 8rpx;
+  --radius-md: 12rpx;
+  --radius-lg: 16rpx;
+  --font-xs: 20rpx;
+  --font-sm: 24rpx;
+  --font-md: 28rpx;
+  --font-lg: 32rpx;
+  --font-xl: 36rpx;
+  --font-xxl: 48rpx;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: var(--font-md);
+  color: var(--text-primary);
+  background-color: var(--bg-color);
+  box-sizing: border-box;
+}
+
+/* 通用卡片样式 */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 通用 flex 布局 */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* 通用间距 */
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+/* 通用文字 */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-hint { color: var(--text-hint); }
+.text-danger { color: var(--danger-color); }
+.text-success { color: var(--success-color); }
+.text-warning { color: var(--warning-color); }
+.text-center { text-align: center; }
+.font-bold { font-weight: bold; }
+.font-sm { font-size: var(--font-sm); }
+.font-md { font-size: var(--font-md); }
+.font-lg { font-size: var(--font-lg); }
+.font-xl { font-size: var(--font-xl); }
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 60rpx;
+  color: var(--text-hint);
+}
+
+.empty-state .icon {
+  font-size: 96rpx;
+  margin-bottom: var(--spacing-lg);
+}
+
+.empty-state .text {
+  font-size: var(--font-md);
+  text-align: center;
+  line-height: 1.6;
+}

@@ -1,0 +1,41 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">
+    <view class="loading-spinner"></view>
+  </view>
+
+  <view wx:elif="{{error}}" class="error-state">
+    <text class="error-text">{{error}}</text>
+    <button class="retry-btn" bindtap="loadTrips">重试</button>
+  </view>
+
+  <view wx:elif="{{trips.length === 0}}" class="empty-state">
+    <text class="empty-icon">🎣</text>
+    <text class="empty-text">还没有钓鱼记录{'\n'}快去记一次钓鱼吧！</text>
+  </view>
+
+  <view wx:else>
+    <view class="header" wx:if="{{trips.length > 0}}">
+      <button class="analytics-btn" bindtap="goAnalytics">📊 数据分析</button>
+    </view>
+    <view class="trip-list">
+    <view class="trip-item" wx:for="{{trips}}" wx:key="id" data-id="{{item.id}}" bindtap="onTapTrip">
+      <view class="trip-date-box {{item.isNoCatch ? 'no-catch' : 'has-catch'}}">
+        <text class="trip-date-text">{{item.date}}</text>
+        <text class="trip-time-text">{{item.time}}</text>
+      </view>
+      <view class="trip-info">
+        <view class="trip-info-top">
+          <text class="trip-spot">{{item.spotName}}</text>
+          <view wx:if="{{item.isNoCatch}}" class="tag tag-red">空军</view>
+        </view>
+        <view class="trip-info-bottom">
+          <view wx:if="{{!item.isNoCatch}}" class="tag tag-blue">{{item.totalCount}}尾</view>
+          <view wx:if="{{item.totalWeightKg > 0}}" class="tag tag-gray">{{item.totalWeightKg}}kg</view>
+          <text wx:if="{{item.speciesSummary}}" class="trip-species">{{item.speciesSummary}}</text>
+        </view>
+      </view>
+      <text class="trip-arrow">›</text>
+    </view>
+    </view>
+  </view>
+</view>

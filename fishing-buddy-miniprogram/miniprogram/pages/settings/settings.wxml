@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="card">
+    <view class="card-header">
+      <text class="card-icon">⚖️</text>
+      <text class="card-title">重量单位</text>
+    </view>
+    <radio-group bindchange="onUnitChange">
+      <label class="radio-item">
+        <radio value="jin" checked="{{weightUnit === 'jin'}}" color="#2196F3" />
+        <text class="radio-label">斤（1斤 = 500g）</text>
+      </label>
+      <label class="radio-item">
+        <radio value="kg" checked="{{weightUnit === 'kg'}}" color="#2196F3" />
+        <text class="radio-label">公斤（kg）</text>
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="card">
+    <view class="card-header">
+      <text class="card-icon">ℹ️</text>
+      <text class="card-title">关于</text>
+    </view>
+    <view class="about-item">
+      <text class="about-label">版本</text>
+      <text class="about-value">1.0.0</text>
+    </view>
+    <view class="about-item">
+      <text class="about-label">数据存储</text>
+      <text class="about-value">微信云开发</text>
+    </view>
+  </view>
+</view>

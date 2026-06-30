@@ -1,0 +1,101 @@
+<view class="container">
+  <!-- 出发时间 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-icon">📅</text>
+      <text class="card-title">出发时间</text>
+    </view>
+    <view class="time-row">
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="picker-value">
+          <text class="picker-label">日期</text>
+          <text class="picker-data">{{date}}</text>
+        </view>
+      </picker>
+      <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+        <view class="picker-value">
+          <text class="picker-label">时间</text>
+          <text class="picker-data">{{time}}</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 渔场信息 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-icon">📍</text>
+      <text class="card-title">渔场信息</text>
+    </view>
+    <input class="form-input" placeholder="渔场名称（例如: 千岛湖）" value="{{spotName}}" bindinput="onSpotInput" />
+    <input class="form-input" placeholder="钓位（例如: 东岸浅滩）" value="{{positionName}}" bindinput="onPositionInput" />
+    <input class="form-input" placeholder="装备类型（例如: 路亚）" value="{{gearType}}" bindinput="onGearInput" />
+    <input class="form-input" type="digit" placeholder="最大长度(cm)" value="{{maxLength}}" bindinput="onMaxLengthInput" />
+  </view>
+
+  <!-- 渔获物种 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-icon">🐟</text>
+      <text class="card-title">渔获物种</text>
+      <view class="add-btn" bindtap="addSpecies">+ 添加</view>
+    </view>
+    <view class="species-list">
+      <view class="species-row" wx:for="{{species}}" wx:key="index">
+        <view class="species-name-wrap" data-index="{{index}}" bindtap="openSpeciesPicker">
+          <input class="species-name" placeholder="点击选择或输入" value="{{item.name}}" data-index="{{index}}" bindinput="onSpeciesNameInput" />
+        </view>
+        <input class="species-count" type="number" placeholder="数量" value="{{item.count}}" data-index="{{index}}" bindinput="onSpeciesCountInput" />
+        <view wx:if="{{species.length > 1}}" class="delete-btn" data-index="{{index}}" bindtap="removeSpecies">✕</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 其他信息 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-icon">📝</text>
+      <text class="card-title">其他信息</text>
+    </view>
+    <view class="form-input-wrap" bindtap="openBaitPicker">
+      <input class="form-input" placeholder="饵料类型（点击选择）" value="{{bait}}" bindinput="onBaitInput" />
+    </view>
+    <input class="form-input" type="digit" placeholder="总重量(kg)" value="{{weight}}" bindinput="onWeightInput" />
+    <textarea class="form-textarea" placeholder="备注" value="{{notes}}" bindinput="onNotesInput" />
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="submit" disabled="{{submitting}}">
+    {{submitting ? '提交中...' : '保存记录'}}
+  </button>
+</view>
+
+<!-- 鱼种选择器 -->
+<view wx:if="{{showSpeciesPicker}}" class="picker-mask" bindtap="closeSpeciesPicker">
+  <view class="picker-content" catchtap="">
+    <view class="picker-header">
+      <text class="picker-title">选择鱼种</text>
+      <text class="picker-close" bindtap="closeSpeciesPicker">关闭</text>
+    </view>
+    <picker-view indicator-class="picker-indicator" value="{{[0]}}" bindchange="onSpeciesSelected" class="picker-view">
+      <picker-view-column>
+        <view wx:for="{{speciesList}}" wx:key="*this" class="picker-item">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+
+<!-- 饵料选择器 -->
+<view wx:if="{{showBaitPicker}}" class="picker-mask" bindtap="closeBaitPicker">
+  <view class="picker-content" catchtap="">
+    <view class="picker-header">
+      <text class="picker-title">选择饵料</text>
+      <text class="picker-close" bindtap="closeBaitPicker">关闭</text>
+    </view>
+    <picker-view indicator-class="picker-indicator" value="{{[0]}}" bindchange="onBaitSelected" class="picker-view">
+      <picker-view-column>
+        <view wx:for="{{baitList}}" wx:key="*this" class="picker-item">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
